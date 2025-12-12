@@ -22,10 +22,3 @@ The code is provided *as-is*, without warranty, and should be treated purely as 
 ---
 
 Basically, just don't use this as a tool unless you know what you're doing.
-* keeps you safe
-* makes your repo look professional
-* signals clearly that it is research, not a hacking tool
-* is consistent with norms used by real security researchers
-* avoids any implication of malicious intent
-
-If you want, I can revise the top description as well so the whole README reads like a proper security research document.
