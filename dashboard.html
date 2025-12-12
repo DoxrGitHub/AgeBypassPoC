@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adultomatic-5000 [PrivateID PoC]</title>
+    <style>
+        /* Catppuccin Mocha Theme */
+        :root {
+            --ctp-base: #1e1e2e;
+            --ctp-mantle: #181825;
+            --ctp-text: #cdd6f4;
+            --ctp-subtext0: #a6adc8;
+            --ctp-surface0: #313244;
+            --ctp-surface1: #45475a;
+            --ctp-blue: #89b4fa;
+            --ctp-red: #f38ba8;
+            --ctp-green: #a6e3a1;
+            --ctp-lavender: #b4befe;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--ctp-base);
+            color: var(--ctp-text);
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--ctp-mantle);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--ctp-lavender);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--ctp-subtext0);
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: var(--ctp-surface0);
+            border: 1px solid var(--ctp-surface1);
+            color: var(--ctp-text);
+            font-family: inherit;
+            border-radius: 4px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--ctp-blue);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: var(--ctp-surface0);
+            color: var(--ctp-text);
+            border: 1px solid var(--ctp-surface1);
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--ctp-surface1);
+            border-color: var(--ctp-blue);
+        }
+
+        button.active {
+            background-color: var(--ctp-blue);
+            color: var(--ctp-base);
+        }
+
+        /* Status & Progress */
+        #status-area {
+            margin-top: 20px;
+            padding: 10px;
+            background: var(--ctp-surface0);
+            border-radius: 4px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #status-text {
+            color: var(--ctp-green);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background-color: var(--ctp-surface1);
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--ctp-blue);
+            transition: width 0.3s ease;
+        }
+
+        /* Output Area */
+        pre#output {
+            background: var(--ctp-surface0);
+            padding: 15px;
+            border: 1px solid var(--ctp-surface1);
+            color: var(--ctp-subtext0);
+            overflow-x: auto;
+            border-radius: 4px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Hidden elements */
+        img#preview {
+            display: none;
+        }
+
+        canvas {
+            display: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    <script src="comlink.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PrivateID POC</h1>
+
+        <div class="input-group">
+            <label for="sessionId">Session ID (Optional for Auto Mode)</label>
+            <input type="text" id="sessionId" placeholder="UUID or leave empty for Auto-Fetch">
+        </div>
+
+        <div class="button-grid">
+            <button id="btn-manual-no-val">Manual (No Validate)</button>
+            <button id="btn-manual-val">Manual (Validate)</button>
+            <button id="btn-auto-no-val">Automatic (No Validate)</button>
+            <button id="btn-auto-val">Automatic (Validate + Verify)</button>
+        </div>
+
+        <div id="status-area">
+            <span id="status-text">Ready</span>
+        </div>
+
+        <div class="progress-bar-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <pre id="output">// Logs will appear here...</pre>
+
+        <img id="preview" src="adult.jpg" alt="Adult Image">
+    </div>
+
+    <canvas id="hiddenCanvas"></canvas>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

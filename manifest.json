@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "Adultomatic-5000 [POC]",
+    "description": "Use at your own risk. This is a proof of concept.",
+    "version": "1.0",
+    "permissions": [
+        "cookies",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://*.google.com/",
+        "https://myaccount.google.com/",
+        "https://*.privateid.com/"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    }
+}
